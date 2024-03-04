@@ -13,10 +13,13 @@
             width: 200px;
             height: 30px;
         }
-
         img {
             width: 300px;
             height: 250px;
+        }
+        #blog {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
         }
     </style>
 </head>
@@ -24,13 +27,13 @@
 
 <body>
     <form id="data">
-        <input type="text" placeholder="title" id="title">
+        <input type="text" placeholder="Title" id="title">
         <br>
-        <input type="src" placeholder="image" id="img">
+        <input type="src" placeholder="Image" id="img">
         <br>
-        <input type="text" placeholder="content" id="content">
+        <input type="text" placeholder="Content" id="content">
         <br>
-        <input type="text" placeholder="username" id="other">
+        <input type="text" placeholder="Username" id="username">
         <br>
         <input type="submit">
     </form>
