@@ -1,30 +1,53 @@
-const blogdata = (e) => {
-    e.preventDefault();
+let products = [];
 
-    let title = document.createElement("h2");
-    title.innerHTML = document.getElementById("title").value;
-    let image = document.createElement("img");
-    image.src = document.getElementById("img").value; 
-    let content = document.createElement("p");
-    content.innerHTML = document.getElementById("content").value;
-    let username = document.createElement("h4");
-    username.innerHTML = document.getElementById("username").value;
-    let add = document.createElement("button");
-    add.innerHTML = "Delete"
-    add.addEventListener("click",(e) =>{
-        e.target.parentNode.remove()
-    });
-    let btt = document.createElement("button");
-    btt.innerHTML = "Like";
-    btt.addEventListener("click",() =>{
-        alert("like");
-    });
+const uimekar = () => {
+    document.getElementById("blog").innerHTML = ""
+    for (let i = 0; i < products.length; i++) {
+        let title = document.createElement("h2");
+        title.innerHTML = products[i].title;
+        let img = document.createElement("img");
+        img.src = products[i].img;
+        let content = document.createElement("p");
+        content.innerHTML = products[i].content;
+        let username = document.createElement("h3");
+        username.innerHTML = products[i].username;
+        let btn = document.createElement("button");
+        btn.innerHTML = "Delete";
+        btn.addEventListener("click", () => {
+            products.splice(i, 1);
+            uimekar();
+        });
+        let add = document.createElement("button");
+        add.innerHTML = "Like";
+        add.addEventListener("click", () => {
+            alert("like");
+        });
 
-    let box = document.createElement("div");
-    box.classList.add("box");
-    box.append(title, image, content, username, add, btt);
-    
-    document.getElementById("blog").appendChild(box);
+        let div = document.createElement("div");
+        div.append(title, img, content, username, btn, add);
+        document.getElementById("blog").append(div);
+
+    }
 }
 
-document.getElementById("data").addEventListener("submit", blogdata);
+const printdata = (e) => {
+    e.preventDefault();
+
+    let title = document.getElementById("title").value;
+    let img = document.getElementById("img").value;
+    let content = document.getElementById("content").value;
+    let username = document.getElementById("username").value;
+
+
+    let product = {
+        title: title,
+        img: img,
+        content: content,
+        username: username
+    };
+    products.push(product);
+
+    uimekar();
+}
+
+document.getElementById("data").addEventListener("submit", printdata);
